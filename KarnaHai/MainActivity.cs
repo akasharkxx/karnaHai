@@ -1,19 +1,21 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Support.V7.App;
+using System.Collections.Generic;
+using Android.Content;
+using Android.Views;
 using Android.Runtime;
 using Android.Widget;
 
 namespace KarnaHai
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity
+    [Activity(Label = "Karna Hai", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@drawable/icon")]
+    public class MainActivity : ListActivity
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(savedInstanceState);
+            base.OnCreate(bundle);
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.activity_main);
+            //SetContentView(Resource.Layout.activity_main);
         }
     }
 }
