@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-</RelativeLayout>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<ListView
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="404.0dp"
+		android:id="@android:id/list"
+		android:smoothScrollbar="false"
+		android:choiceMode="multipleChoice" />
+	<TableRow
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/addItem"
+		android:accessibilityLiveRegion="polite"
+		android:importantForAccessibility="yes"
+		android:keyboardNavigationCluster="false"
+		android:pointerIcon="arrow"
+		android:gravity="center">
+		<EditText
+			android:id="@+id/itemText"
+			android:layout_width="252.0dp" />
+		<Button
+			android:text="ADD"
+			android:layout_width="112.0dp"
+			android:layout_height="wrap_content"
+			android:id="@+id/newItemButton"
+			android:layout_marginRight="6.5dp" />
+	</TableRow>
+</LinearLayout>

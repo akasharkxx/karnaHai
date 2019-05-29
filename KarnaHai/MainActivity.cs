@@ -11,6 +11,7 @@ namespace KarnaHai
     [Activity(Label = "Karna Hai", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : ListActivity
     {
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
