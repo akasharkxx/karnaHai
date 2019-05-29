@@ -8,7 +8,7 @@ using Android.Widget;
 
 namespace KarnaHai
 {
-    [Activity(Label = "Karna Hai", Theme = "@style/AppTheme", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Karna Hai", Theme = "@style/AppTheme", MainLauncher = true/*, Icon = "@drawable/icon"*/)]
     public class MainActivity : ListActivity
     {
         //a list to hold items for list
@@ -43,23 +43,33 @@ namespace KarnaHai
             {
                 //button click code
 
-            
-                //add item in the text box
 
+                //add item from the text box
+                EditText itemText = FindViewById<EditText>(Resource.Id.itemText);
+                string item = itemText.Text;
 
-                //no null item should be added
-
+                //no null item should be added so check for it
+                if(item == "" || item == null)
+                {
+                    //this is blank item
+                    return;
+                }
 
                 //add new item to the list
-
+                Items.Add(item);
 
                 //add this new item to adapter list
+                adapter.Add(item);
 
                 //tell listview about adapter list
+                adapter.NotifyDataSetChanged();
 
                 //clear out textbox
+                itemText.Text = "";
 
                 //update stored key/value pairs ni shared preferences
+
+
             };
         }//end of OnCreate
         
@@ -87,6 +97,36 @@ namespace KarnaHai
 
 
         }//end of LoadList
+
+        //This method updates the stored key/value pairs in the shared preferences
+        public void UpdateStoredData()
+        {
+            //remove the current items in shared preferences
+            ISharedPreferencesEditor editor = prefs.Edit();
+            editor.Clear();
+            editor.Commit();
+
+            //add all items in the shared preferences
+            //if app is close we can reopen the list
+            editor = prefs.Edit();
+
+            //ke that keep track of how many items is stores in SP
+            editor.PutInt("itemCount", Items.Count);
+
+            int counter = 0;
+            //loop through each item and add it
+            //list to be writtten
+            foreach(string item in Items)
+            {
+                editor.PutString(counter.ToString(), item);
+                counter++;
+            }
+
+            //Write to shared preferences
+
+            editor.Apply();
+
+        }
     }//end of Class
 
 }
