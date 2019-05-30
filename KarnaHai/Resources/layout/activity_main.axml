@@ -8,10 +8,11 @@
 		android:minWidth="25px"
 		android:minHeight="25px"
 		android:layout_width="match_parent"
-		android:layout_height="404.0dp"
+		android:layout_height="484.7dp"
 		android:id="@android:id/list"
 		android:smoothScrollbar="false"
-		android:choiceMode="multipleChoice" />
+		android:choiceMode="multipleChoice"
+		android:layout_marginBottom="0dp" />
 	<TableRow
 		android:minWidth="25px"
 		android:minHeight="25px"

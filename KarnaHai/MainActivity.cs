@@ -8,7 +8,7 @@ using Android.Widget;
 
 namespace KarnaHai
 {
-    [Activity(Label = "Karna Hai", Theme = "@style/AppTheme", MainLauncher = true/*, Icon = "@drawable/icon"*/)]
+    [Activity(Label = "Karna Hai", Theme = "@style/AppTheme", MainLauncher = true/*, Icon = "@drawable/icon"*/, WindowSoftInputMode = SoftInput.AdjustPan | SoftInput.StateHidden)]
     public class MainActivity : ListActivity
     {
         //a list to hold items for list
@@ -32,6 +32,8 @@ namespace KarnaHai
 
             //load any existing list items from shared prefrences
             LoadList();
+
+
             //Add the list of items to the listview
             adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItemMultipleChoice, Items);
             ListAdapter = adapter; //builtin list adapter
@@ -62,17 +64,56 @@ namespace KarnaHai
                 adapter.Add(item);
 
                 //tell listview about adapter list
-                adapter.NotifyDataSetChanged();
+                adapter.NotifyDataSetChanged(); 
 
                 //clear out textbox
                 itemText.Text = "";
 
                 //update stored key/value pairs ni shared preferences
-
+                UpdateStoredData();
 
             };
         }//end of OnCreate
-        
+
+        //this is a method that is called when a item in list is clicked
+
+        protected override void OnListItemClick(ListView l, View v, int position, long id)
+        {
+            base.OnListItemClick(l, v, position, id);
+            //when user clicks then we remove from shared preferences
+
+            RunOnUiThread(() =>
+            {
+                AlertDialog.Builder builder;
+                builder = new AlertDialog.Builder(this);
+                builder.SetTitle("Comfirm");
+                builder.SetMessage("Are you done with this task");
+                builder.SetCancelable(true);
+
+                builder.SetPositiveButton("OK", delegate
+                {
+                    //remove item
+                    var item = Items[position];
+                    Items.Remove(item);
+                    adapter.Remove(item);
+
+                    //reset the listview so non is checked
+                    l.ClearChoices();
+                    l.RequestLayout();
+
+                    //Update the data stored in shared preferences
+                    UpdateStoredData();
+                });
+
+                builder.SetNegativeButton("Cancel", delegate
+                {
+                    return;
+                });
+
+                //this launches "modal" popup
+            });
+        }
+
         //this method loads items from shared preferences and fills the list
 
         public void LoadList(){
@@ -81,21 +122,19 @@ namespace KarnaHai
             int count = prefs.GetInt("itemCount", 0); //saves 0
 
             //loop throught items and add them to the list
-            if(count > 0)
+            if (count > 0)
             {
                 Toast.MakeText(this, "Getting saved items...", Android.Widget.ToastLength.Short).Show();
 
-                for(int i = 0; i <= count; i++)
+                for (int i = 0; i <= count; i++)
                 {
                     string item = prefs.GetString(i.ToString(), null);
-                    if(item != null)
+                    if (item != null)
                     {
                         Items.Add(item);
                     }
                 }//end of for loop
             }
-
-
         }//end of LoadList
 
         //This method updates the stored key/value pairs in the shared preferences
@@ -126,7 +165,7 @@ namespace KarnaHai
 
             editor.Apply();
 
-        }
+        }//end of method
     }//end of Class
 
 }
