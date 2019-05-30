@@ -110,6 +110,7 @@ namespace KarnaHai
                     return;
                 });
 
+                builder.Show();
                 //this launches "modal" popup
             });
         }
