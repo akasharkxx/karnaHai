@@ -2,21 +2,27 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TextView
+		android:text="Yeh Sab Karna Hai"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="match_parent"
+		android:layout_height="45dp"
+		android:id="@+id/textView1" 
+		android:gravity="center" />
 	<ListView
 		android:minWidth="25px"
 		android:minHeight="25px"
-		android:layout_width="match_parent"
-		android:layout_height="484.7dp"
+		android:layout_width="fill_parent"
+		android:layout_height="460dp"
 		android:id="@android:id/list"
 		android:smoothScrollbar="false"
-		android:choiceMode="multipleChoice"
-		android:layout_marginBottom="0dp" />
+		android:choiceMode="multipleChoice" />
 	<TableRow
 		android:minWidth="25px"
 		android:minHeight="25px"
-		android:layout_width="match_parent"
+		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:id="@+id/addItem"
 		android:accessibilityLiveRegion="polite"
@@ -26,10 +32,10 @@
 		android:gravity="center">
 		<EditText
 			android:id="@+id/itemText"
-			android:layout_width="252.0dp" />
+			android:layout_width="250dp" />
 		<Button
 			android:text="ADD"
-			android:layout_width="112.0dp"
+			android:layout_width="114dp"
 			android:layout_height="wrap_content"
 			android:id="@+id/newItemButton"
 			android:layout_marginRight="6.5dp" />
