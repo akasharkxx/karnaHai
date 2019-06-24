@@ -8,7 +8,7 @@ using Android.Widget;
 
 namespace KarnaHai
 {
-    [Activity(Label = "Karna Hai", Theme = "@style/AppTheme", MainLauncher = true/*, Icon = "@drawable/icon"*/, WindowSoftInputMode = SoftInput.AdjustPan | SoftInput.StateHidden)]
+    [Activity(Label = "Karna Hai", Theme = "@style/AppTheme", MainLauncher = true/*, Icon = "@drawable/icon"*/, WindowSoftInputMode = SoftInput.AdjustResize)]
     public class MainActivity : ListActivity
     {
         //a list to hold items for list
